@@ -16,7 +16,9 @@ h1. test
 
 *bo*ld*
 
-
+|| column header 1 || column header 2 || column 3 ||
+| row 1 column 1 | row 1 column 2 | row 1 column 3 |
+| row 2 column 1 | row 2 column 2 | row 2 column 3 |
 
 *stron*g*
 Makes text strong.
@@ -39,3 +41,14 @@ bq. Some block quoted text
 To make an entire paragraph into a block quotation, place "bq. " before it.
 
 Example:
+
+
+|| column header 1 || column header 2 || column 3 ||
+| row 1 column 1 | row 1 column 2 | row 1 column 3 |
+| row 2 column 1 | row 2 column 2 | row 2 column 3 |
+
+
+
+|| column header 1 || column header 2 || column 3 || column4 || column 5 ||
+| row 1 column 1 | row 1 column 2 | row 1 column 3 | 1 4 | 1 5 |
+| row 2 column 1 | row 2 column 2 | row 2 column 3 | 2 5 | 2 5 |

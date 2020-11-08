@@ -22,6 +22,7 @@ func ConvertAll() {
 
 	result := string(inputFile)
 
+	ConvertTableHeaders(&result)
 	ConvertHeadings(&result)
 	ConvertCodeBlocks(&result)
 	ConvertTextEffects(&result)
@@ -86,7 +87,7 @@ func ConvertTextEffects(result *string) {
 	citationJira := regexp.MustCompile(`(?U)\?\?([^}]+)\?\?`)
 
 	// -deleted in jira- -> ~~deleted in jira~~
-	deletedJira := regexp.MustCompile(`(?U)\-([^}]+)\-`)
+	// deletedJira := regexp.MustCompile(`(?U)\-([^}]+)\-`)
 
 	// +inserted in jira+ -> <ins>inserted in jira</ins>
 	insertedJira := regexp.MustCompile(`(?U)\+([^}]+)\+`)
@@ -104,9 +105,35 @@ func ConvertTextEffects(result *string) {
 	*result = emphasisJira.ReplaceAllString(*result, "*"+`$1`+"*")
 	*result = citationJira.ReplaceAllString(*result, "<cite>"+`$1`+"</cite>")
 	*result = subscriptJira.ReplaceAllString(*result, "<sub>"+`$1`+"</sub>")
-	*result = deletedJira.ReplaceAllString(*result, "~~"+`$1`+"~~")
+	// *result = deletedJira.ReplaceAllString(*result, "~~"+`$1`+"~~")
 	*result = insertedJira.ReplaceAllString(*result, "<ins>"+`$1`+"</ins>")
 	*result = superscriptJira.ReplaceAllString(*result, "<sup>"+`$1`+"</sup>")
 	*result = monospacedJira.ReplaceAllString(*result, "`"+`$1`+"`")
+
+}
+
+// ConvertTableHeaders function to convert table headers
+func ConvertTableHeaders(result *string) {
+
+	// *strong in jira* -> `strong in jira`
+	tableHeadersJira := regexp.MustCompile(`(?m)^\|\|(.*)\|\|$`)
+
+	columnEscaped := "-------\\|"
+	column := "-------|"
+	secondRow := "\\|"
+
+	*result = tableHeadersJira.ReplaceAllString(*result, "|"+`$1`+"|\n|"+column)
+	secondRow = secondRow + columnEscaped
+
+	loopBool := true
+
+	for loopBool {
+
+		loopBool, _ = regexp.MatchString(`(?m)^(\|.*)(\|\|)(.*\|$\n`+secondRow+`)`, *result)
+
+		*result = regexp.MustCompile(`(?m)(^\|.*)(\|\|)(.*\|$\n`+secondRow+`)`).ReplaceAllString(*result, `$1|$3`+column)
+		secondRow = secondRow + columnEscaped
+
+	}
 
 }

@@ -2,7 +2,7 @@ Feature List
 
 1. Supported Conversions
     
-    ### Headings
+    ### ✓ Headings
 
     To create a header, place "hn. " at the start of the line (where n can be a number from 1-6).
 
@@ -24,7 +24,7 @@ Feature List
     | ✓ | *strong*                                                                | Makes text **strong**.                                                                                      |
     | ✓ | _emphasis_                                                              | Makes text *emphasis*..                                                                                     |
     | ✓ | ??citation??                                                            | Makes text in <cite>citation</cite>.                                                                        |
-    | ✓ | -deleted-                                                               | Makes text as ~~deleted~~.                                                                                  |
+    |   | -deleted-                                                               | Makes text as ~~deleted~~.                                                                                  |
     | ✓ | +inserted+                                                              | Makes text as <ins>inserted</ins>.                                                                          |
     | ✓ | ^superscript^                                                           | Makes text in <sup>superscript</sup>.                                                                       |
     | ✓ | ~subscript~                                                             | Makes text in <sub>subscript</sub>.                                                                         |
@@ -80,15 +80,19 @@ Feature List
     |   | !image.jpg\|thumbnail!                                   | Insert a thumbnail of the image into the page (only works with images that are attached to the page).                                                                   |
     |   | !image.gif\|align=right, vspace=4!                       | For any image, you can also specify attributes of the image tag as a comma separated list of name=value pairs like so.                                                  |
 
-    ### Tables
+    ### ✓ Tables
 
     Tables allow you to organise content in a rows and columns, with a header row if required.
 
 
-    ### Advanced Formatting
+    |   | Syntax                                                   | Result in MD       |
+    |---|----------------------------------------------------------|--------------------|
+    | ✓ | \|\| column1 \|\| column2 \|\| column3 \|\|  | \| column1 \| column2 \| column3 \|<br>\|-------\|-------\|-------\| |
+
+    ### ✓ Advanced Formatting
     More advanced text formatting.
 
-    |   | Syntax                                                                                        | Result in MD                                                                                   |
+    | ✓ | Syntax                                                                                        | Result in MD                                                                                   |
     |---|-----------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------|
     |   | {code:java}// Some comments here<br>public String getFoo()<br>{<br>    return foo;<br>}{code} | \`\`\`java<br>// Some comments here<br>public String getFoo()<br>{<br>    return foo;<br>}<br>\`\`\` |
 
